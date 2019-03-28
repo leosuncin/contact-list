@@ -1,6 +1,6 @@
 <template>
-  <b-container>
-    <b-h1>Contact List</b-h1>
+  <section class="container">
+    <h1 class="title">Contact List</h1>
     <b-table
       :data="contacts"
       :columns="columns"
@@ -8,7 +8,7 @@
       :mobile-cards="true"
       :loading="loading"
     ></b-table>
-  </b-container>
+  </section>
 </template>
 
 <script>
