@@ -4,9 +4,12 @@
     <b-table
       :data="contacts"
       :columns="columns"
-      :striped="true"
-      :mobile-cards="true"
+      striped
+      mobile-cards
       :loading="loading"
+      paginated
+      per-page="10"
+      pagination-simple
     ></b-table>
   </section>
 </template>
