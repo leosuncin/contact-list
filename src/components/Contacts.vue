@@ -62,7 +62,14 @@
                 >
                   Edit {{ props.row.username }}
                 </button>
-                <button class="button is-danger">
+                <button
+                  class="button is-danger"
+                  @click="
+                    contacts = contacts.filter(
+                      contact => contact.id !== props.row.id
+                    )
+                  "
+                >
                   Remove {{ props.row.username }}
                 </button>
               </div>
@@ -255,10 +262,11 @@ export default {
     },
     submitContact() {
       if (!this.currentUser.id) {
-        const id = this.contacts.reduce(
-          (max, current) => (max = current.id > max ? current.id : max),
-          Number.MIN_SAFE_INTEGER
-        );
+        const id =
+          this.contacts.reduce(
+            (max, current) => (max = current.id > max ? current.id : max),
+            Number.MIN_SAFE_INTEGER
+          ) + 1;
         this.contacts = [...this.contacts, { id, ...this.currentUser }];
       } else {
         this.contacts = this.contacts.map(contact =>
