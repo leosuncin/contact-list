@@ -1,4 +1,6 @@
-# contact-list
+# Contact List with [Vue.js](https://vuejs.org/)
+
+> My first Vue.js app is alive
 
 ## Project setup
 ```
