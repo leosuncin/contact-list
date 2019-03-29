@@ -21,7 +21,7 @@ before_script:
 script:
   - yarn lint
   - yarn test:unit
-  - yarn test:e2e
+  - yarn test:e2e --headless
 
 after_script:
   - yarn deploy
