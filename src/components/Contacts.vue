@@ -250,21 +250,27 @@ export default {
   methods: {
     async loadContacts() {
       try {
-        this.contacts = JSON.parse(localStorage.getItem("contacts"));
+        const json = localStorage.getItem("contacts") || "[]";
+        this.contacts = JSON.parse(json) || [];
       } catch (error) {
         this.contacts = [];
       }
 
-      if (this.contacts.length < 1) {
-        const resp = await this.$http.get(
-          "https://jsonplaceholder.typicode.com/users"
-        );
+      try {
+        if (!Array.isArray(this.contacts) || this.contacts.length < 1) {
+          const resp = await this.$http.get(
+            "https://jsonplaceholder.typicode.com/users"
+          );
 
-        if (resp.status === 200) {
-          this.contacts = resp.body;
+          if (resp.status === 200) {
+            this.contacts = resp.body;
+          }
         }
+      } catch (error) {
+        this.contacts = [];
+      } finally {
+        this.loading = false;
       }
-      this.loading = false;
     },
     toggleRow(id) {
       this.$refs.table.toggleDetails(id);
