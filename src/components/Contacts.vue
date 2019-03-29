@@ -249,13 +249,22 @@ export default {
   },
   methods: {
     async loadContacts() {
-      const resp = await this.$http.get(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      this.loading = false;
-      if (resp.status === 200) {
-        this.contacts = resp.body;
+      try {
+        this.contacts = JSON.parse(localStorage.getItem("contacts"));
+      } catch (error) {
+        this.contacts = [];
       }
+
+      if (this.contacts.length < 1) {
+        const resp = await this.$http.get(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+
+        if (resp.status === 200) {
+          this.contacts = resp.body;
+        }
+      }
+      this.loading = false;
     },
     toggleRow(id) {
       this.$refs.table.toggleDetails(id);
@@ -286,6 +295,11 @@ export default {
   },
   beforeMount() {
     this.loadContacts();
+  },
+  watch: {
+    contacts(newVal) {
+      localStorage.setItem("contacts", JSON.stringify(newVal));
+    }
   }
 };
 </script>
