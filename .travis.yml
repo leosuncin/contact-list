@@ -1,0 +1,27 @@
+language: node_js
+
+node_js:
+  - node
+
+notifications:
+  email: false
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+    - ~/.cache
+
+install:
+  - yarn install
+
+before_script:
+  - yarn build
+
+script:
+  - yarn lint
+  - yarn test:unit
+  - yarn test:e2e --headless
+
+after_script:
+  - yarn deploy
