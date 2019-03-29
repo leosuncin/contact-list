@@ -55,11 +55,128 @@
           </div>
         </article>
       </template>
+      <template slot="footer">
+        <button
+          class="button is-primary is-pulled-right"
+          @click="showAddContactModal = true"
+        >
+          Add contact
+        </button>
+      </template>
     </b-table>
+    <b-modal :active.sync="showAddContactModal" has-modal-card ref="parent">
+      <form name="contact" @submit.prevent="addContact">
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Create contact</p>
+          </header>
+          <section class="modal-card-body">
+            <b-tabs type="is-boxed" animated>
+              <b-tab-item label="Basic" icon="account">
+                <b-field label="Full name" horizontal>
+                  <b-input v-model="newUser.name" required />
+                </b-field>
+                <b-field label="Username" horizontal>
+                  <b-input v-model="newUser.username" required patter="\\w+" />
+                </b-field>
+                <b-field label="e-mail" horizontal>
+                  <b-input type="email" v-model="newUser.email" required />
+                </b-field>
+                <b-field label="Phone Number" horizontal>
+                  <b-input
+                    v-model="newUser.phone"
+                    required
+                    pattern="[0-9]+(-?[0-9]+)*"
+                  />
+                </b-field>
+                <b-field label="Website" horizontal>
+                  <b-input type="url" v-model="newUser.website" required />
+                </b-field>
+              </b-tab-item>
+              <b-tab-item label="Address" icon="home">
+                <b-field horizontal label="Street">
+                  <b-input v-model="newUser.address.street" required />
+                </b-field>
+                <b-field horizontal label="Suite">
+                  <b-input v-model="newUser.address.suite" required />
+                </b-field>
+                <b-field horizontal label="City">
+                  <b-input v-model="newUser.address.city" required />
+                </b-field>
+                <b-field horizontal label="Zip Code">
+                  <b-input
+                    type="number"
+                    v-model="newUser.address.zipcode"
+                    required
+                  />
+                </b-field>
+                <b-field label="Position" grouped>
+                  <b-input
+                    type="number"
+                    v-model="newUser.address.geo.lat"
+                    placeholder="Latitude"
+                    required
+                  />
+                  <b-input
+                    type="number"
+                    v-model="newUser.address.geo.lng"
+                    placeholder="Longitude"
+                    required
+                  />
+                </b-field>
+              </b-tab-item>
+              <b-tab-item label="Company" icon="factory">
+                <b-field horizontal label="Name">
+                  <b-input v-model="newUser.company.name" required="required" />
+                </b-field>
+                <b-field horizontal label="Catch Phrase">
+                  <b-input
+                    v-model="newUser.company.catchPhrase"
+                    required="required"
+                  />
+                </b-field>
+                <b-field horizontal label="Business">
+                  <b-input v-model="newUser.company.bs" required="required" />
+                </b-field>
+              </b-tab-item>
+            </b-tabs>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button" type="button" @click="$refs.parent.close()">
+              Cancel
+            </button>
+            <button class="button is-primary">Add</button>
+          </footer>
+        </div>
+      </form>
+    </b-modal>
   </section>
 </template>
 
 <script>
+const initialUser = {
+  name: "",
+  username: "",
+  email: "",
+  address: {
+    street: "",
+    suite: "",
+    city: "",
+    zipcode: "",
+    geo: {
+      lat: "",
+      lng: ""
+    }
+  },
+  phone: "",
+  website: "",
+  company: {
+    name: "",
+    catchPhrase: "",
+    bs: ""
+  }
+};
+
 export default {
   data() {
     return {
@@ -71,7 +188,7 @@ export default {
         },
         {
           field: "name",
-          label: "Name"
+          label: "Full name"
         },
         {
           field: "username",
@@ -83,11 +200,13 @@ export default {
         },
         {
           field: "phone",
-          label: "Phonenumber"
+          label: "Phone number"
         }
       ],
       contacts: [],
-      loading: true
+      loading: true,
+      showAddContactModal: false,
+      newUser: initialUser
     };
   },
   methods: {
@@ -102,6 +221,19 @@ export default {
     },
     toggleRow(id) {
       this.$refs.table.toggleDetails(id);
+    },
+    addContact() {
+      const id = this.contacts.reduce(
+        (max, current) => (max = current.id > max ? current.id : max),
+        Number.MIN_SAFE_INTEGER
+      );
+      this.contacts = [...this.contacts, { id, ...this.newUser }];
+      this.newUser = initialUser;
+      this.$toast.open({
+        message: "Contact created",
+        type: "is-success"
+      });
+      this.$refs.parent.close();
     }
   },
   beforeMount() {
