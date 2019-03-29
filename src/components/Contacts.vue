@@ -60,7 +60,7 @@
                       (currentUser = Object.assign({}, props.row))
                   "
                 >
-                  Edit {{ props.row.username }}
+                  Update {{ props.row.username }}
                 </button>
                 <button
                   class="button is-danger"
@@ -100,44 +100,97 @@
           <section class="modal-card-body">
             <b-tabs type="is-boxed" animated>
               <b-tab-item label="Basic" icon="account">
-                <b-field label="Full name" horizontal>
-                  <b-input v-model="currentUser.name" required />
+                <b-field label="Full name" label-for="contact_name" horizontal>
+                  <b-input
+                    v-model="currentUser.name"
+                    id="contact_name"
+                    required
+                  />
                 </b-field>
-                <b-field label="Username" horizontal>
+                <b-field
+                  label="Username"
+                  label-for="contact_username"
+                  horizontal
+                >
                   <b-input
                     v-model="currentUser.username"
+                    id="contact_username"
                     required
                     patter="\\w+"
                   />
                 </b-field>
-                <b-field label="e-mail" horizontal>
-                  <b-input type="email" v-model="currentUser.email" required />
+                <b-field label="e-mail" label-for="contact_email" horizontal>
+                  <b-input
+                    type="email"
+                    v-model="currentUser.email"
+                    id="contact_email"
+                    required
+                  />
                 </b-field>
-                <b-field label="Phone Number" horizontal>
+                <b-field
+                  label="Phone Number"
+                  label-for="contact_phone"
+                  horizontal
+                >
                   <b-input
                     v-model="currentUser.phone"
+                    id="contact_phone"
                     required
                     pattern="[0-9]+(-?[0-9]+)*"
                   />
                 </b-field>
-                <b-field label="Website" horizontal>
-                  <b-input type="url" v-model="currentUser.website" required />
+                <b-field label="Website" label-for="contact_website" horizontal>
+                  <b-input
+                    type="url"
+                    v-model="currentUser.website"
+                    id="contact_website"
+                    required
+                  />
                 </b-field>
               </b-tab-item>
-              <b-tab-item label="Address" icon="home">
+              <b-tab-item
+                label="Address"
+                label-for="contact_address_street"
+                icon="home"
+              >
                 <b-field horizontal label="Street">
-                  <b-input v-model="currentUser.address.street" required />
+                  <b-input
+                    v-model="currentUser.address.street"
+                    id="contact_address_street"
+                    required
+                  />
                 </b-field>
-                <b-field horizontal label="Suite">
-                  <b-input v-model="currentUser.address.suite" required />
+                <b-field
+                  horizontal
+                  label="Suite"
+                  label-for="contact_address_suite"
+                >
+                  <b-input
+                    v-model="currentUser.address.suite"
+                    id="contact_address_suite"
+                    required
+                  />
                 </b-field>
-                <b-field horizontal label="City">
-                  <b-input v-model="currentUser.address.city" required />
+                <b-field
+                  horizontal
+                  label="City"
+                  label-for="contact_address_city"
+                >
+                  <b-input
+                    v-model="currentUser.address.city"
+                    id="contact_address_city"
+                    required
+                  />
                 </b-field>
-                <b-field horizontal label="Zip Code">
+                <b-field
+                  horizontal
+                  label="Zip Code"
+                  label-for="contact_address_zipCode"
+                >
                   <b-input
                     type="number"
                     v-model="currentUser.address.zipcode"
+                    id="contact_address_zipCode"
                     required
                   />
                 </b-field>
@@ -145,33 +198,58 @@
                   <b-input
                     type="number"
                     v-model="currentUser.address.geo.lat"
+                    id="contact_address_geo_lat"
+                    aria-label="Latitude"
                     placeholder="Latitude"
+                    step="0.0001"
+                    min="-180.0000"
+                    max="180.0000"
                     required
                   />
                   <b-input
                     type="number"
                     v-model="currentUser.address.geo.lng"
+                    id="contact_address_geo_lng"
+                    aria-label="Longitude"
                     placeholder="Longitude"
+                    step="0.0001"
+                    min="-180.0000"
+                    max="180.0000"
                     required
                   />
                 </b-field>
               </b-tab-item>
               <b-tab-item label="Company" icon="factory">
-                <b-field horizontal label="Name">
+                <b-field
+                  horizontal
+                  label="Name"
+                  label-for="contact_company_name"
+                >
                   <b-input
                     v-model="currentUser.company.name"
+                    id="contact_company_name"
                     required="required"
                   />
                 </b-field>
-                <b-field horizontal label="Catch Phrase">
+                <b-field
+                  horizontal
+                  label="Catch Phrase"
+                  label-for="contact_company_catchPhrase"
+                >
                   <b-input
                     v-model="currentUser.company.catchPhrase"
+                    id="contact_company_catchPhrase"
                     required="required"
                   />
                 </b-field>
-                <b-field horizontal label="Business">
+                <b-field
+                  horizontal
+                  label="Business"
+                  label-for="contact_company_bs"
+                >
                   <b-input
                     v-model="currentUser.company.bs"
+                    id="contact_company_bs"
                     required="required"
                   />
                 </b-field>
