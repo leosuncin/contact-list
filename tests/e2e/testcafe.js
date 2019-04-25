@@ -1,6 +1,6 @@
 import * as faker from "faker";
 import { Selector, RequestMock } from "testcafe";
-import * as users from "./fixtures/users.json";
+import users from "./fixtures/users.json";
 
 const baseUrl = process.env.BASE_URL || "http://localhost:8080";
 const mockUsers = RequestMock() // eslint-disable-line no-unused-vars
@@ -13,7 +13,7 @@ const mockUsers = RequestMock() // eslint-disable-line no-unused-vars
 /* global fixture */
 fixture("Contact List")
   .page(baseUrl)
-  // .requestHooks(mockUsers) /* Esto no funciona */
+  .requestHooks(mockUsers) /* Esto no funciona */
   .afterEach(async t => {
     await t.eval(() => localStorage.clear());
   });
