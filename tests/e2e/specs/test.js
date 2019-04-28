@@ -30,65 +30,71 @@ describe("Contact list", () => {
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
 
-    cy.contains("Add contact").click();
-    cy.get('form[name="contact"]').should("be.visible");
+    cy.getByText(/Add contact/i).click();
+    cy.getByText(/Create contact/i).to.be("visible");
 
-    cy.get(".tabs li:nth-child(1) > a").click();
-    cy.get("#contact_name").type(firstName + " " + lastName);
-    cy.get("#contact_username").type(
+    cy.getByText(/Basic/i).click();
+    cy.getByLabelText(/Full name/i).type(`${firstName} ${lastName}`);
+    cy.getByLabelText(/Username/i).type(
       faker.internet.userName(firstName, lastName)
     );
-    cy.get("#contact_email").type(faker.internet.email(firstName, lastName));
-    cy.get("#contact_phone").type(faker.phone.phoneNumber("####-####"));
-    cy.get("#contact_website").type(faker.internet.url());
+    cy.getByLabelText(/e-mail/i).type(
+      faker.internet.email(firstName, lastName)
+    );
+    cy.getByLabelText(/Phone Number/i).type(
+      faker.phone.phoneNumber("####-####")
+    );
+    cy.getByLabelText(/website/i).type(faker.internet.url());
 
-    cy.get(".tabs li:nth-child(2) > a").click();
-    cy.get("#contact_address_street").type(faker.address.streetAddress());
-    cy.get("#contact_address_suite").type(faker.address.secondaryAddress());
-    cy.get("#contact_address_city").type(faker.address.city());
-    cy.get("#contact_address_zipCode").type(faker.address.zipCode("######"));
-    cy.get("#contact_address_geo_lat").type(faker.address.latitude());
-    cy.get("#contact_address_geo_lng").type(faker.address.longitude());
+    cy.getByText(/Address/i).click();
+    cy.getByLabelText(/Street/i).type(faker.address.streetAddress());
+    cy.getByLabelText(/Suite/i).type(faker.address.secondaryAddress());
+    cy.getByLabelText(/City/i).type(faker.address.city());
+    cy.getByLabelText(/Zip Code/i).type(faker.address.zipCode("######"));
+    cy.getByPlaceholderText(/latitude/i).type(faker.address.latitude());
+    cy.getByPlaceholderText(/longitude/i).type(faker.address.longitude());
 
-    cy.get(".tabs li:nth-child(3) > a").click();
-    cy.get("#contact_company_name").type(faker.company.companyName());
-    cy.get("#contact_company_catchPhrase").type(faker.company.catchPhrase());
-    cy.get("#contact_company_bs").type(faker.company.bs());
+    cy.getByText(/Company/i).click();
+    cy.getByLabelText(/^Name/i).type(faker.company.companyName());
+    cy.getByLabelText(/Catch Phrase/i).type(faker.company.catchPhrase());
+    cy.getByLabelText(/Business/i).type(faker.company.bs());
 
-    cy.get("button")
-      .contains("Create")
-      .click();
+    cy.getByText(/Create/i, { selector: "button" }).click();
 
-    cy.get("tbody tr:last").contains(firstName);
+    cy.get(".pagination .pagination-next").click();
+
+    cy.getByText(RegExp(`${firstName} ${lastName}`, "i")).to.be("visible");
   });
 
   it("Should update one contact", () => {
     const phoneNumber = faker.phone.phoneNumber("####-####");
     const website = faker.internet.url();
     const zipCode = faker.address.zipCode("######");
+    const business = faker.company.bs();
 
     cy.get(".chevron-cell:first > a").click();
-    cy.contains("button", "Update").click();
-    cy.contains(/Update \w+ info/).should("be.visible");
+    cy.getByText(/^Update/i).click();
+    cy.getByText(/Update \w+ info/).should("be.visible");
 
-    cy.get(".tabs li:nth-child(1) > a").click();
-    cy.get("#contact_phone")
+    cy.getByText(/Basic/i).click();
+    cy.getByLabelText(/^phone/i)
       .clear()
       .type(phoneNumber);
-    cy.get("#contact_website")
+    cy.getByLabelText(/^website/i)
       .clear()
       .type(website);
 
-    cy.get(".tabs li:nth-child(2) > a").click();
-    cy.get("#contact_address_zipCode")
+    cy.getByText(/Address/i).click();
+    cy.getByLabelText(/Zip Code/i)
       .clear()
       .type(zipCode);
-    cy.get(".tabs li:nth-child(3) > a").click();
-    cy.get("#contact_company_bs")
-      .clear()
-      .type(faker.company.bs());
 
-    cy.get('form[name="contact"]').submit();
+    cy.getByText(/Company/i).click();
+    cy.getByLabelText(/Business/i)
+      .clear()
+      .type(business);
+
+    cy.getByText(/^Edit/i).click();
 
     cy.contains('[data-label="Phone number"]:first', phoneNumber);
     cy.get("tr.detail").contains(website);
@@ -96,7 +102,7 @@ describe("Contact list", () => {
 
   it("Should delete one contact", () => {
     cy.get(".chevron-cell:first > a").click();
-    cy.contains("Remove").click();
+    cy.getByText(/^Remove/).click();
     cy.get("tbody tr")
       .its("length")
       .should("be.eq", 8);
