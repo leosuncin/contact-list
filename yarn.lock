@@ -11596,7 +11596,16 @@ testcafe-reporter-xunit@^2.1.0:
   resolved "https://registry.yarnpkg.com/testcafe-reporter-xunit/-/testcafe-reporter-xunit-2.1.0.tgz#e6d66c572ce15af266706af0fd610b2a841dd443"
   integrity sha1-5tZsVyzhWvJmcGrw/WELKoQd1EM=
 
-testcafe@^1.1.3:
+testcafe-testing-library@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/testcafe-testing-library/-/testcafe-testing-library-1.0.1.tgz#ca4b53e111071b46610f52522412ebb7cab458ad"
+  integrity sha512-cwido7s+VF4Y9nYYHGRJcTjv9QqU/uUZ6oqsde6Mz1kyudhj8qe1AQzPNA1XTlN3/uokNUOE1DGFTsDyf0ibmw==
+  dependencies:
+    "@babel/runtime" "^7.4.3"
+    dom-testing-library "^4.0.0"
+    testcafe "^1.1.2"
+
+testcafe@^1.1.2, testcafe@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/testcafe/-/testcafe-1.1.3.tgz#5440cac32ec571760d7fa43482d058beb946cac2"
   integrity sha512-AnwNHaJJPG5JrIB0UcPgQ/TjdraADGamh63D8m+4l0DLhgBUr/u7TYocucSDSq1tciR0HhE8Mgh5N4wriHH4Yw==
