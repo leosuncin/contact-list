@@ -148,12 +148,12 @@
                   />
                 </b-field>
               </b-tab-item>
-              <b-tab-item
-                label="Address"
-                label-for="contact_address_street"
-                icon="home"
-              >
-                <b-field horizontal label="Street">
+              <b-tab-item label="Address" icon="home">
+                <b-field
+                  horizontal
+                  label="Street"
+                  label-for="contact_address_street"
+                >
                   <b-input
                     v-model="currentUser.address.street"
                     id="contact_address_street"
