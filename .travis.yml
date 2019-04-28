@@ -35,7 +35,7 @@ before_script:
   - sleep 3
   - fluxbox >/dev/null 2>&1 &
   - yarn build
-  - http-server dist &
+  - http-server -s dist &
 
 script:
   - yarn lint
