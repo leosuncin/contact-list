@@ -31,7 +31,7 @@ describe("Contact list", () => {
     const lastName = faker.name.lastName();
 
     cy.getByText(/Add contact/i).click();
-    cy.getByText(/Create contact/i).to.be("visible");
+    cy.getByText(/Create contact/i).should("be.visible");
 
     cy.getByText(/Basic/i).click();
     cy.getByLabelText(/Full name/i).type(`${firstName} ${lastName}`);
@@ -63,7 +63,7 @@ describe("Contact list", () => {
 
     cy.get(".pagination .pagination-next").click();
 
-    cy.getByText(RegExp(`${firstName} ${lastName}`, "i")).to.be("visible");
+    cy.getByText(RegExp(`${firstName} ${lastName}`, "i")).should("be.visible");
   });
 
   it("Should update one contact", () => {
