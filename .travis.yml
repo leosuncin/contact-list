@@ -1,11 +1,12 @@
 language: node_js
 
 node_js:
-  - node
+  - 10
 
 notifications:
   email: false
 
+dist: trusty
 sudo: required
 addons:
   firefox: latest
@@ -20,6 +21,9 @@ cache:
   directories:
     - node_modules
     - ~/.cache
+
+before_install:
+  - stty cols 80
 
 install:
   - yarn install
