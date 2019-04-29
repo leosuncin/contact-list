@@ -1,0 +1,12 @@
+{
+  "browsers": ["firefox:headless"],
+  "src": "tests/testcafe/*.spec.js",
+  "screenshotPath": "tests/testcafe/screenshots",
+  "takeScreenshotsOnFails": true,
+  "videoPath": "tests/testcafe/videos",
+  "videoOptions": {
+    "singleFile": true
+  },
+  "appCommand": "npm run serve",
+  "appInitDelay": 3000
+}
