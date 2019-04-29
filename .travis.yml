@@ -24,7 +24,6 @@ cache:
 
 before_install:
   - stty cols 80
-  - npm i -g http-server
 
 install:
   - yarn install
@@ -35,13 +34,12 @@ before_script:
   - sleep 3
   - fluxbox >/dev/null 2>&1 &
   - yarn build
-  - http-server -s dist &
 
 script:
   - yarn lint
   - yarn test:unit
   - yarn test:e2e --headless --record --key 00d0788b-7e9c-43f8-9c7c-5009a21dad3a
-  - yarn test:e2e:browsers
+  - yarn test:testcafe
 
 after_script:
   - yarn deploy

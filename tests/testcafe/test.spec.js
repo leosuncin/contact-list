@@ -7,7 +7,7 @@ import {
   addTestcafeTestingLibrary
 } from "testcafe-testing-library";
 
-import users from "./fixtures/users.json";
+import users from "../e2e/fixtures/users.json";
 
 const baseUrl = process.env.BASE_URL || "http://localhost:8080";
 const mockUsers = RequestMock() // eslint-disable-line no-unused-vars
@@ -48,7 +48,7 @@ test("Should create one contact", async t => {
     .typeText(getByLabelText(/Full name/i), firstName + " " + lastName)
     .typeText(
       getByLabelText(/Username/i),
-      faker.internet.userName(firstName, lastName)
+      faker.internet.userName(firstName, lastName, 'example.com')
     )
     .typeText(
       getByLabelText(/e-mail/i),
@@ -80,7 +80,7 @@ test("Should create one contact", async t => {
   await t.click(".pagination .pagination-next");
 
   await t
-    .expect(getByText(RegExp(`${firstName} ${lastName}`, "i")).visible)
+    .expect(getByText(RegExp(`^${firstName} ${lastName}$`, "i")).visible)
     .ok();
 });
 

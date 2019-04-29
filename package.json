@@ -9,9 +9,7 @@
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e:firefox": "testcafe firefox tests/e2e/testcafe.js",
-    "test:e2e:chrome": "testcafe chrome tests/e2e/testcafe.js",
-    "test:e2e:browsers": "testcafe all tests/e2e/testcafe.js"
+    "test:testcafe": "testcafe"
   },
   "dependencies": {
     "buefy": "^0.8.8",
