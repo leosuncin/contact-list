@@ -43,44 +43,37 @@ test("Should create one contact", async t => {
   await t.click(getByText(/Add contact/i));
   await t.expect(getByText(/Create contact/i).visible).ok();
 
-  await t.click(getByText(/Basic/i));
-  await t.typeText(getByLabelText(/Full name/i), firstName + " " + lastName);
-  await t.typeText(
-    getByLabelText(/Username/i),
-    faker.internet.userName(firstName, lastName)
-  );
-  await t.typeText(
-    getByLabelText(/e-mail/i),
-    faker.internet.email(firstName, lastName)
-  );
-  await t.typeText(
-    getByLabelText(/Phone Number/i),
-    faker.phone.phoneNumber("####-####")
-  );
-  await t.typeText(getByLabelText(/website/i), faker.internet.url());
+  await t
+    .click(getByText(/Basic/i))
+    .typeText(getByLabelText(/Full name/i), firstName + " " + lastName)
+    .typeText(
+      getByLabelText(/Username/i),
+      faker.internet.userName(firstName, lastName)
+    )
+    .typeText(
+      getByLabelText(/e-mail/i),
+      faker.internet.email(firstName, lastName)
+    )
+    .typeText(
+      getByLabelText(/Phone Number/i),
+      faker.phone.phoneNumber("####-####")
+    )
+    .typeText(getByLabelText(/website/i), faker.internet.url());
 
-  await t.click(getByText(/Address/i));
+  await t
+    .click(getByText(/Address/i))
+    .typeText(getByLabelText(/Street/i), faker.address.streetAddress())
+    .typeText(getByLabelText(/Suite/i), faker.address.secondaryAddress())
+    .typeText(getByLabelText(/City/i), faker.address.city())
+    .typeText(getByLabelText(/Zip Code/i), faker.address.zipCode("######"))
+    .typeText(getByPlaceholderText(/latitude/i), faker.address.latitude())
+    .typeText(getByPlaceholderText(/longitude/i), faker.address.longitude());
 
-  await t.typeText(getByLabelText(/Street/i), faker.address.streetAddress());
-  await t.typeText(getByLabelText(/Suite/i), faker.address.secondaryAddress());
-  await t.typeText(getByLabelText(/City/i), faker.address.city());
-  await t.typeText(
-    getByLabelText(/Zip Code/i),
-    faker.address.zipCode("######")
-  );
-  await t.typeText(getByPlaceholderText(/latitude/i), faker.address.latitude());
-  await t.typeText(
-    getByPlaceholderText(/longitude/i),
-    faker.address.longitude()
-  );
-
-  await t.click(getByText(/Company/i));
-  await t.typeText(getByLabelText(/^Name/i), faker.company.companyName());
-  await t.typeText(
-    getByLabelText(/Catch Phrase/i),
-    faker.company.catchPhrase()
-  );
-  await t.typeText(getByLabelText(/Business/i), faker.company.bs());
+  await t
+    .click(getByText(/Company/i))
+    .typeText(getByLabelText(/^Name/i), faker.company.companyName())
+    .typeText(getByLabelText(/Catch Phrase/i), faker.company.catchPhrase())
+    .typeText(getByLabelText(/Business/i), faker.company.bs());
 
   await t.click(getByText(/Create/i, { selector: "button" }));
 
@@ -100,18 +93,23 @@ test("Should update one contact", async t => {
 
   await t.click(".chevron-cell:first-of-type > a");
 
-  await t.click(getByText(/^Update/i));
-  await t.expect(getByText(/Update \w+ info/).visible).ok();
+  await t
+    .click(getByText(/^Update/i))
+    .expect(getByText(/Update \w+ info/).visible)
+    .ok();
 
-  await t.click(getByText(/Basic/i));
-  await t.typeText(getByLabelText(/^phone/i), phoneNumber, options);
-  await t.typeText(getByLabelText(/^website/i), website, options);
+  await t
+    .click(getByText(/Basic/i))
+    .typeText(getByLabelText(/^phone/i), phoneNumber, options)
+    .typeText(getByLabelText(/^website/i), website, options);
 
-  await t.click(getByText(/Address/i));
-  await t.typeText(getByLabelText(/Zip Code/i), zipCode, options);
+  await t
+    .click(getByText(/Address/i))
+    .typeText(getByLabelText(/Zip Code/i), zipCode, options);
 
-  await t.click(getByText(/Company/i));
-  await t.typeText(getByLabelText(/Business/i), business, options);
+  await t
+    .click(getByText(/Company/i))
+    .typeText(getByLabelText(/Business/i), business, options);
 
   await t.click(getByText(/^Edit/i));
 
@@ -124,7 +122,9 @@ test("Should update one contact", async t => {
 });
 
 test("Should delete one contact", async t => {
-  await t.click(".chevron-cell:first-of-type > a");
-  await t.click(getByText(/^Remove/));
-  await t.expect(Selector("tbody tr").count).eql(8);
+  await t
+    .click(".chevron-cell:first-of-type > a")
+    .click(getByText(/^Remove/))
+    .expect(Selector("tbody tr").count)
+    .eql(8);
 });
