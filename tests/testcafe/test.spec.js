@@ -48,7 +48,7 @@ test("Should create one contact", async t => {
     .typeText(getByLabelText(/Full name/i), firstName + " " + lastName)
     .typeText(
       getByLabelText(/Username/i),
-      faker.internet.userName(firstName, lastName, 'example.com')
+      faker.internet.userName(firstName, lastName, "example.com")
     )
     .typeText(
       getByLabelText(/e-mail/i),
