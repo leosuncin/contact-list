@@ -4,7 +4,8 @@ import {
   getByText,
   getByLabelText,
   getByPlaceholderText,
-  addTestcafeTestingLibrary
+  addTestcafeTestingLibrary,
+  within
 } from "testcafe-testing-library";
 
 import users from "../e2e/fixtures/users.json";
@@ -42,6 +43,8 @@ test("Should create one contact", async t => {
 
   await t.click(getByText(/Add contact/i));
   await t.expect(getByText(/Create contact/i).visible).ok();
+
+  await within('form[name="contact"]');
 
   await t
     .click(getByText(/Basic/i))
