@@ -13,6 +13,7 @@ addons:
   apt:
     sources:
      - google-chrome
+     - trusty-media
     packages:
      - google-chrome-stable fluxbox ffmpeg
 
