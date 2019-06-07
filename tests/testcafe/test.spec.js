@@ -5,19 +5,19 @@ import {
   getByLabelText,
   getByPlaceholderText,
   addTestcafeTestingLibrary
-} from "testcafe-testing-library";
+} from "@testing-library/testcafe";
 
 import users from "../e2e/fixtures/users.json";
 
 const baseUrl = process.env.BASE_URL || "http://localhost:8080";
-const mockUsers = RequestMock() // eslint-disable-line no-unused-vars
+const mockUsers = RequestMock()
   .onRequestTo("https://jsonplaceholder.typicode.com/users")
   .respond(users, 200, {
     "access-control-allow-credentials": true,
     "access-control-allow-origin": "*",
     "content-type": "application/json; charset=utf-8"
   });
-/* global fixture */
+
 fixture("Contact List")
   .page(baseUrl)
   .requestHooks(mockUsers)
