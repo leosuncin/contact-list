@@ -1,5 +1,7 @@
 # Contact List with [Vue.js](https://vuejs.org/)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/leosuncin/contact-list.svg)](https://greenkeeper.io/)
+
 > My first Vue.js app is alive
 
 ## Project setup
