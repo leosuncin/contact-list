@@ -269,6 +269,8 @@
 </template>
 
 <script>
+import { ToastProgrammatic as Toast } from 'buefy';
+
 const initialUser = {
   name: "",
   username: "",
@@ -366,7 +368,7 @@ export default {
           contact.id === this.currentUser.id ? this.currentUser : contact
         );
       }
-      this.$toast.open({
+      Toast.open({
         message:
           this.action === "Create"
             ? "Contact created"
