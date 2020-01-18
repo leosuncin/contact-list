@@ -1,21 +1,21 @@
 language: node_js
 
 node_js:
-  - 10
+  - 12
 
 notifications:
   email: false
 
-dist: trusty
+dist: xenial
 sudo: required
 addons:
   firefox: latest
+  chrome: stable
   apt:
-    sources:
-     - google-chrome
-     - trusty-media
     packages:
-     - google-chrome-stable fluxbox ffmpeg
+     - fluxbox 
+     - ffmpeg
+     - libgconf-2-4
 
 cache:
   yarn: true
