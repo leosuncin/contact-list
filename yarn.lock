@@ -1052,18 +1052,7 @@
     "@testing-library/dom" "^6.0.0"
     "@types/testing-library__cypress" "^4.1.0"
 
-"@testing-library/dom@^5.0.1":
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-5.6.1.tgz#705a1cb4a039b877c1e69e916824038e837ab637"
-  integrity sha512-Y1T2bjtvQMewffn1CJ28kpgnuvPYKsBcZMagEH0ppfEMZPDc8AkkEnTk4smrGZKw0cblNB3lhM2FMnpfLExlHg==
-  dependencies:
-    "@babel/runtime" "^7.5.5"
-    "@sheerun/mutationobserver-shim" "^0.3.2"
-    aria-query "3.0.0"
-    pretty-format "^24.8.0"
-    wait-for-expect "^1.2.0"
-
-"@testing-library/dom@^6.0.0":
+"@testing-library/dom@^6.0.0", "@testing-library/dom@^6.3.0":
   version "6.11.0"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-6.11.0.tgz#962a38f1a721fdb7c9e35e7579e33ff13a00eda4"
   integrity sha512-Pkx9LMIGshyNbfmecjt18rrAp/ayMqGH674jYER0SXj0iG9xZc+zWRjk2Pg9JgPBDvwI//xGrI/oOQkAi4YEew==
@@ -1075,14 +1064,14 @@
     pretty-format "^24.9.0"
     wait-for-expect "^3.0.0"
 
-"@testing-library/testcafe@^2.0.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/testcafe/-/testcafe-2.1.1.tgz#d60bc0247c3ebba110a2e67da3da3cff8e5fe7f1"
-  integrity sha512-EmGoQxYEL24vR5bYyILZ9Wrw5HAE6eG9yDUU3ST/2DbQiiPSaPWKF0T1bT/Wmjzzt72XqozoHASshRMqBmAMMw==
+"@testing-library/testcafe@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/testcafe/-/testcafe-3.3.1.tgz#3597f62ad2362b684bc9ea0ea7db51d2e958df24"
+  integrity sha512-N7/47j8NUqeKsNFUSRH5dIAY2/w2cUfW95hnNTg+MasKW5mD7rqVv3LeclIv8ZtnDkvvc3w+h0Ab0610K9CdLw==
   dependencies:
     "@babel/runtime" "^7.4.3"
-    "@testing-library/dom" "^5.0.1"
-    testcafe "^1.1.2"
+    "@testing-library/dom" "^6.3.0"
+    testcafe "^1.5.0"
 
 "@types/babel__core@^7.1.0":
   version "7.1.3"
@@ -10032,7 +10021,7 @@ pretty-error@^2.0.2:
     renderkid "^2.0.1"
     utila "~0.4"
 
-pretty-format@^24.3.0, pretty-format@^24.7.0, pretty-format@^24.8.0, pretty-format@^24.9.0:
+pretty-format@^24.3.0, pretty-format@^24.7.0, pretty-format@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-24.9.0.tgz#12fac31b37019a4eea3c11aa9a959eb7628aa7c9"
   integrity sha512-00ZMZUiHaJrNfk33guavqgvfJS30sLYf0f8+Srklv0AMPodGGHcoHgksZ3OThYnIvOd+8yMCn0YiEOogjlgsnA==
@@ -11904,7 +11893,7 @@ testcafe-testing-library@^1.2.0:
     dom-testing-library "^4.0.0"
     testcafe "^1.1.2"
 
-testcafe@^1.1.2, testcafe@^1.1.3:
+testcafe@^1.1.2, testcafe@^1.1.3, testcafe@^1.5.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/testcafe/-/testcafe-1.8.0.tgz#f5589e25052991b3672b37b46833a236b43ff509"
   integrity sha512-CbUGKlP8o8uaan2mRJIctsajiMZ8ii2B5ahLgbwBiUDFdi3uakR6vfV3tTLo1IgMuuR8D+4wEpFzDnLUnEOCLA==
@@ -12687,7 +12676,7 @@ w3c-xmlserializer@^1.1.2:
     webidl-conversions "^4.0.2"
     xml-name-validator "^3.0.0"
 
-wait-for-expect@^1.1.1, wait-for-expect@^1.2.0:
+wait-for-expect@^1.1.1:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/wait-for-expect/-/wait-for-expect-1.3.0.tgz#65241ce355425f907f5d127bdb5e72c412ff830c"
   integrity sha512-8fJU7jiA96HfGPt+P/UilelSAZfhMBJ52YhKzlmZQvKEZU2EcD1GQ0yqGB6liLdHjYtYAoGVigYwdxr5rktvzA==
