@@ -46,4 +46,4 @@ jobs:
         yarn add -O @ffmpeg-installer/ffmpeg
     - uses: DevExpress/testcafe-action@latest
       with:
-        args: tests/testcafe
+        args: --app 'yarn serve' tests/testcafe
