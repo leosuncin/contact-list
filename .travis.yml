@@ -7,7 +7,6 @@ notifications:
   email: false
 
 dist: xenial
-sudo: required
 addons:
   firefox: latest
   chrome: stable
