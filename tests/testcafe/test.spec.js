@@ -3,8 +3,7 @@ import { Selector, RequestMock } from "testcafe";
 import {
   getByText,
   getByLabelText,
-  getByPlaceholderText,
-  addTestcafeTestingLibrary
+  getByPlaceholderText
 } from "@testing-library/testcafe";
 
 import users from "../e2e/fixtures/users.json";
@@ -22,7 +21,6 @@ fixture("Contact List")
   .page(baseUrl)
   .requestHooks(mockUsers)
   .beforeEach(async t => {
-    addTestcafeTestingLibrary(t);
     await t.eval(() => localStorage.clear());
   });
 
