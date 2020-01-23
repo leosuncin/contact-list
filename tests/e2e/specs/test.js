@@ -28,53 +28,53 @@ describe("Contact list", () => {
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
 
-    cy.getByText(/Add contact/i)
+    cy.findByText(/Add contact/i)
       .click()
-      .getByText(/Create contact/i)
+      .findByText(/Create contact/i)
       .should("be.visible");
 
-    cy.getByText(/Basic/i)
+    cy.findByText(/Basic/i)
       .click()
-      .getByLabelText(/Full name/i)
+      .findByLabelText(/Full name/i)
       .type(`${firstName} ${lastName}`)
-      .getByLabelText(/Username/i)
+      .findByLabelText(/Username/i)
       .type(faker.internet.userName(firstName, lastName))
-      .getByLabelText(/e-mail/i)
+      .findByLabelText(/e-mail/i)
       .type(faker.internet.email(firstName, lastName))
-      .getByLabelText(/Phone Number/i)
+      .findByLabelText(/Phone Number/i)
       .type(faker.phone.phoneNumber("####-####"))
-      .getByLabelText(/website/i)
+      .findByLabelText(/website/i)
       .type(faker.internet.url());
 
-    cy.getByText(/Address/i)
+    cy.findByText(/Address/i)
       .click()
-      .getByLabelText(/Street/i)
+      .findByLabelText(/Street/i)
       .type(faker.address.streetAddress())
-      .getByLabelText(/Suite/i)
+      .findByLabelText(/Suite/i)
       .type(faker.address.secondaryAddress())
-      .getByLabelText(/City/i)
+      .findByLabelText(/City/i)
       .type(faker.address.city())
-      .getByLabelText(/Zip Code/i)
+      .findByLabelText(/Zip Code/i)
       .type(faker.address.zipCode("######"))
-      .getByPlaceholderText(/latitude/i)
+      .findByPlaceholderText(/latitude/i)
       .type(faker.address.latitude())
-      .getByPlaceholderText(/longitude/i)
+      .findByPlaceholderText(/longitude/i)
       .type(faker.address.longitude());
 
-    cy.getByText(/Company/i)
+    cy.findByText(/Company/i)
       .click()
-      .getByLabelText(/^Name/i)
+      .findByLabelText(/^Name/i)
       .type(faker.company.companyName())
-      .getByLabelText(/Catch Phrase/i)
+      .findByLabelText(/Catch Phrase/i)
       .type(faker.company.catchPhrase())
-      .getByLabelText(/Business/i)
+      .findByLabelText(/Business/i)
       .type(faker.company.bs());
 
-    cy.getByText(/Create/i, { selector: "button" }).click();
+    cy.findByText(/Create/i, { selector: "button" }).click();
 
     cy.get(".pagination .pagination-next").click();
 
-    cy.getByText(RegExp(`${firstName} ${lastName}`, "i")).should("be.visible");
+    cy.findByText(RegExp(`${firstName} ${lastName}`, "i")).should("be.visible");
   });
 
   it("Should update one contact", () => {
@@ -85,33 +85,33 @@ describe("Contact list", () => {
 
     cy.get(".chevron-cell:first > a")
       .click()
-      .getByText(/^Update/i)
+      .findByText(/^Update/i)
       .click()
-      .getByText(/Update \w+ info/)
+      .findByText(/Update \w+ info/)
       .should("be.visible");
 
-    cy.getByText(/Basic/i)
+    cy.findByText(/Basic/i)
       .click()
-      .getByLabelText(/^phone/i)
+      .findByLabelText(/^phone/i)
       .clear()
       .type(phoneNumber)
-      .getByLabelText(/^website/i)
+      .findByLabelText(/^website/i)
       .clear()
       .type(website);
 
-    cy.getByText(/Address/i)
+    cy.findByText(/Address/i)
       .click()
-      .getByLabelText(/Zip Code/i)
+      .findByLabelText(/Zip Code/i)
       .clear()
       .type(zipCode);
 
-    cy.getByText(/Company/i)
+    cy.findByText(/Company/i)
       .click()
-      .getByLabelText(/Business/i)
+      .findByLabelText(/Business/i)
       .clear()
       .type(business);
 
-    cy.getByText(/^Edit/i).click();
+    cy.findByText(/^Edit/i).click();
 
     cy.contains('[data-label="Phone number"]:first', phoneNumber)
       .get("tr.detail")
@@ -121,7 +121,7 @@ describe("Contact list", () => {
   it("Should delete one contact", () => {
     cy.get(".chevron-cell:first > a")
       .click()
-      .getByText(/^Remove/)
+      .findByText(/^Remove/)
       .click()
       .get("tbody tr")
       .its("length")
