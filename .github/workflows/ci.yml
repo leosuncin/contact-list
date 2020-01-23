@@ -44,9 +44,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: |
-        wget https://raw.githubusercontent.com/q3aql/ffmpeg-install/master/ffmpeg-install
-        chmod a+x ffmpeg-install
-        ./ffmpeg-install --install release
+        npm ci
+        npm i --no-save @ffmpeg-installer/ffmpeg
     - uses: DevExpress/testcafe-action@latest
       with:
         args: tests/testcafe
