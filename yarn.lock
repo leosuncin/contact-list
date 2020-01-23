@@ -1097,14 +1097,14 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
 
-"@testing-library/cypress@^4.0.3":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/cypress/-/cypress-4.2.0.tgz#788ed4ccb3ad2f70fbe4758f07995cd1cdd58ba7"
-  integrity sha512-IFM/iuVBUi0ciw5rx6zzX//DtFUrPumZJIDjMRe1MzsoakdvLfMdPtt2DuvEt3iJHmH0LQM1vZCIoQDUe99yhQ==
+"@testing-library/cypress@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/cypress/-/cypress-5.0.2.tgz#68746fc9db11dabcc4bf883e25b64316f637be71"
+  integrity sha512-AmvBLE+isA/vpdBTXpJ5tu+UYMDgqNW015RVa0nBPJHrv5UXNlmDZyu8tpkxGTFhcf+iFSA2pHuK1jUCQ8PnXQ==
   dependencies:
     "@babel/runtime" "^7.5.5"
     "@testing-library/dom" "^6.0.0"
-    "@types/testing-library__cypress" "^4.1.0"
+    "@types/testing-library__cypress" "^5.0.0"
 
 "@testing-library/dom@^6.0.0", "@testing-library/dom@^6.3.0":
   version "6.11.0"
@@ -1216,13 +1216,6 @@
   dependencies:
     jest-diff "^24.3.0"
 
-"@types/jquery@*":
-  version "3.3.31"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.31.tgz#27c706e4bf488474e1cb54a71d8303f37c93451b"
-  integrity sha512-Lz4BAJihoFw5nRzKvg4nawXPzutkv7wmfQ5121avptaSIXlDNJCUuxZxX/G+9EVidZGuO0UBlk+YjKbwRKJigg==
-  dependencies:
-    "@types/sizzle" "*"
-
 "@types/lodash@^4.14.72":
   version "4.14.149"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
@@ -1258,7 +1251,7 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
 
-"@types/sizzle@*", "@types/sizzle@2.3.2":
+"@types/sizzle@2.3.2":
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/@types/sizzle/-/sizzle-2.3.2.tgz#a811b8c18e2babab7d542b3365887ae2e4d9de47"
   integrity sha512-7EJYyKTL7tFR8+gDbB6Wwz/arpGa0Mywk1TJbNzKzHtzbwVmY4HR9WqS5VV7dsBUKQmPNr192jHr/VpBluj/hg==
@@ -1278,13 +1271,13 @@
   resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
   integrity sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==
 
-"@types/testing-library__cypress@^4.1.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@types/testing-library__cypress/-/testing-library__cypress-4.2.0.tgz#c319e12f5dacfed4761bb47432a029a50abf60ba"
-  integrity sha512-e3Z7zLHGH+n5B0kfYEW5GoO55J2nCNSFnacg0wnXkMOpBKvZVXB5GtRVCWQF2+I2vnCahu8dB96AmLh7dnw5TA==
+"@types/testing-library__cypress@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/testing-library__cypress/-/testing-library__cypress-5.0.1.tgz#d05a264eb5d5a45659699a4e0309a7cebe57b344"
+  integrity sha512-z2JKxVTh3PDeLbATRofwDUImEwuytsBeu8Si6YLzxwc2HK4xGIDs50HFlwYD9MPlclGDQRm0QL7ynnaIjRtCGg==
   dependencies:
-    "@types/jquery" "*"
     "@types/testing-library__dom" "*"
+    cypress "^3.5.0"
 
 "@types/testing-library__dom@*", "@types/testing-library__dom@^6.0.0":
   version "6.11.1"
@@ -4440,7 +4433,7 @@ cyclist@^1.0.1:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
 
-cypress@^3.3.1:
+cypress@^3.3.1, cypress@^3.5.0:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-3.8.2.tgz#58fa96e1e7dae712403b0f4e8af1efe35442ff7a"
   integrity sha512-aTs0u3+dfEuLe0Ct0FVO5jD1ULqxbuqWUZwzBm0rxdLgLxIAOI/A9f/WkgY5Cfy1TEXe8pKC6Wal0ZpnkdGRSw==
