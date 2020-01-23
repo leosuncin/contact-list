@@ -1,6 +1,5 @@
 # Contact List with [Vue.js](https://vuejs.org/)
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/leosuncin/contact-list.svg)](https://greenkeeper.io/)
 [![Build Status](https://img.shields.io/travis/leosuncin/contact-list.svg?style=flat)](https://travis-ci.org/leosuncin/contact-list)
 [![Dependency Status](https://img.shields.io/david/leosuncin/contact-list.svg?style=flat)](https://david-dm.org/leosuncin/contact-list)
 [![devDependency Status](https://img.shields.io/david/dev/leosuncin/contact-list.svg?style=flat)](https://david-dm.org/leosuncin/contact-list#info=devDependencies)
