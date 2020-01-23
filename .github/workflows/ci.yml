@@ -31,12 +31,10 @@ jobs:
     - uses: cypress-io/github-action@v1
       timeout-minutes: 10
       env:
-        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         CYPRESS_baseUrl: http://localhost:8080
       with:
         start: npm run serve
         wait-on: http://localhost:8080
-        record: true
 
   testcafe:
     runs-on: ubuntu-16.04
@@ -44,8 +42,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: |
-        npm ci
-        npm i --no-save @ffmpeg-installer/ffmpeg
+        yarn install
+        yarn add -O @ffmpeg-installer/ffmpeg
     - uses: DevExpress/testcafe-action@latest
       with:
         args: tests/testcafe
