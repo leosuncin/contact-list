@@ -1,0 +1,48 @@
+name: CI test
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip-ci')"
+    steps:
+    - uses: actions/checkout@v1
+    - uses: reviewdog/action-eslint@v1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        eslint_flags: --ext '.js' --ext '.vue' .
+
+  unit:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip-ci')"
+    steps:
+    - uses: actions/checkout@v1
+    - uses: bahmutov/npm-install@v1
+    - name: npm test
+      run: |
+        npm run test:unit
+
+  cypress:
+    runs-on: ubuntu-16.04
+    if: "!contains(github.event.head_commit.message, 'skip-ci')"
+    steps:
+    - uses: actions/checkout@v1
+    - uses: cypress-io/github-action@v1
+      timeout-minutes: 10
+      env:
+        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        CYPRESS_baseUrl: http://localhost:8080
+      with:
+        start: npm run serve
+        wait-on: http://localhost:8080
+        record: true
+
+  testcafe:
+    runs-on: ubuntu-16.04
+    if: "!contains(github.event.head_commit.message, 'skip-ci')"
+    steps:
+    - uses: actions/checkout@v1
+    - uses: DevExpress/testcafe-action@latest
+      with:
+        args: tests/testcafe
