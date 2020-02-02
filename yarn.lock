@@ -1098,9 +1098,9 @@
     string-width "^2.0.0"
 
 "@testing-library/cypress@^5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@testing-library/cypress/-/cypress-5.0.2.tgz#68746fc9db11dabcc4bf883e25b64316f637be71"
-  integrity sha512-AmvBLE+isA/vpdBTXpJ5tu+UYMDgqNW015RVa0nBPJHrv5UXNlmDZyu8tpkxGTFhcf+iFSA2pHuK1jUCQ8PnXQ==
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/cypress/-/cypress-5.2.0.tgz#dc1eee422c6efb51c6b9ccc16768f983e3beca2d"
+  integrity sha512-1ktU/mnZy28MfYTIuqO1KAn+4zP5f3iCDRVO4mcs/N5fvUBsjJAcrNEsFVVa6fzBJrphGzkUMHBbAh7uwXm9Lg==
   dependencies:
     "@babel/runtime" "^7.5.5"
     "@testing-library/dom" "^6.0.0"
