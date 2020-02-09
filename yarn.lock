@@ -1118,14 +1118,14 @@
     pretty-format "^24.9.0"
     wait-for-expect "^3.0.0"
 
-"@testing-library/testcafe@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/testcafe/-/testcafe-3.3.1.tgz#3597f62ad2362b684bc9ea0ea7db51d2e958df24"
-  integrity sha512-N7/47j8NUqeKsNFUSRH5dIAY2/w2cUfW95hnNTg+MasKW5mD7rqVv3LeclIv8ZtnDkvvc3w+h0Ab0610K9CdLw==
+"@testing-library/testcafe@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/testcafe/-/testcafe-4.0.0.tgz#3aad816b0b7dbaf5ab844b1a4afc7db97d6f2895"
+  integrity sha512-l/WWa0nzqECeO6K7uGXAcLzpJ27BUAQvIw5auZgNMBdixmP3byPkcSaBD6tygJLdxqNKVjoAd5ulCVeCBSvJ3w==
   dependencies:
     "@babel/runtime" "^7.4.3"
     "@testing-library/dom" "^6.3.0"
-    testcafe "^1.5.0"
+    testcafe "^1.6.1"
 
 "@types/babel__core@^7.1.0":
   version "7.1.3"
@@ -12068,7 +12068,7 @@ testcafe-testing-library@^1.2.0:
     dom-testing-library "^4.0.0"
     testcafe "^1.1.2"
 
-testcafe@^1.1.2, testcafe@^1.5.0, testcafe@^1.8.1:
+testcafe@^1.1.2, testcafe@^1.6.1, testcafe@^1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/testcafe/-/testcafe-1.8.1.tgz#1550658c98cb6b839ae47e1a77033f3f87fea44e"
   integrity sha512-BTN3BAmKK2R5Z0t3poiMCaiqbZaWyHfFMhY1toMg0hgQi147Bs8naMCkFePt2r1dc5wGnJ5QEJikGbVMqJUwMQ==
