@@ -44,6 +44,6 @@ jobs:
     - uses: bahmutov/npm-install@v1
     - run: |
         yarn add -O @ffmpeg-installer/ffmpeg
-    - uses: DevExpress/testcafe-action@latest
+    - uses: Meemaw/testcafe-action@master
       with:
         args: --app 'yarn serve' tests/testcafe
