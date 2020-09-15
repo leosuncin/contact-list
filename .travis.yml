@@ -26,7 +26,7 @@ before_install:
   - stty cols 80
 
 install:
-  - yarn install
+  - yarn install --frozen-lockfile
 
 before_script:
   - "export DISPLAY=:99.0"
@@ -38,7 +38,7 @@ before_script:
 script:
   - yarn lint
   - yarn test:unit
-  - yarn test:e2e --headless --record --key 00d0788b-7e9c-43f8-9c7c-5009a21dad3a
+  - yarn test:e2e --headless
   - yarn test:testcafe
 
 after_script:
