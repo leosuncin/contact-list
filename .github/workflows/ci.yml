@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'skip-ci')"
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: reviewdog/action-eslint@v1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'skip-ci')"
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: bahmutov/npm-install@v1
     - name: npm test
       run: |
@@ -37,12 +37,12 @@ jobs:
         wait-on: http://localhost:8080
 
   testcafe:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'skip-ci')"
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
+    - uses: bahmutov/npm-install@v1
     - run: |
-        yarn install
         yarn add -O @ffmpeg-installer/ffmpeg
     - uses: DevExpress/testcafe-action@latest
       with:
