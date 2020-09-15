@@ -1,9 +1,12 @@
 import * as faker from "faker";
-import { Selector, RequestMock } from "testcafe";
+import { RequestMock } from "testcafe";
 import {
-  getByText,
+  getAllByRole,
   getByLabelText,
-  getByPlaceholderText
+  getByPlaceholderText,
+  getByRole,
+  getByText,
+  within,
 } from "@testing-library/testcafe";
 
 import users from "../e2e/fixtures/users.json";
@@ -14,31 +17,31 @@ const mockUsers = RequestMock()
   .respond(users, 200, {
     "access-control-allow-credentials": true,
     "access-control-allow-origin": "*",
-    "content-type": "application/json; charset=utf-8"
+    "content-type": "application/json; charset=utf-8",
   });
 
 fixture("Contact List")
   .page(baseUrl)
   .requestHooks(mockUsers)
-  .beforeEach(async t => {
+  .beforeEach(async (t) => {
     await t.eval(() => localStorage.clear());
   });
 
-test("Should show a table with the contacts", async t => {
-  await t.expect(Selector("tbody tr").count).gte(9);
+test("Should show a table with the contacts", async (t) => {
+  await t.expect(getAllByRole("row").count).gte(9);
 });
 
-test("Should show the details of one contact", async t => {
-  await t.click(".chevron-cell:first-of-type > a");
+test("Should show the details of one contact", async (t) => {
+  await t.click(within(getAllByRole("row").nth(1)).getByRole("button"));
 
-  await t.expect(Selector("tr.detail").count).eql(1);
+  await t.expect(getByRole("article").visible).ok();
 });
 
-test("Should create one contact", async t => {
+test("Should create one contact", async (t) => {
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
 
-  await t.click(getByText(/Add contact/i));
+  await t.click(getByRole("button", { name: /Add contact/i }));
   await t.expect(getByText(/Create contact/i).visible).ok();
 
   await t
@@ -73,26 +76,27 @@ test("Should create one contact", async t => {
     .typeText(getByLabelText(/Catch Phrase/i), faker.company.catchPhrase())
     .typeText(getByLabelText(/Business/i), faker.company.bs());
 
-  await t.click(getByText(/Create/i, { selector: "button" }));
-
-  await t.click(".pagination .pagination-next");
+  await t.click(getByRole("button", { name: /Create/i }));
 
   await t
-    .expect(getByText(RegExp(`^${firstName} ${lastName}$`, "i")).visible)
+    .expect(
+      getByRole("row", { name: RegExp(`${firstName} ${lastName}`, "i") })
+        .visible
+    )
     .ok();
 });
 
-test("Should update one contact", async t => {
+test("Should update one contact", async (t) => {
   const phoneNumber = faker.phone.phoneNumber("####-####");
   const website = faker.internet.url();
   const zipCode = faker.address.zipCode("######");
   const business = faker.company.bs();
   const options = { replace: true };
 
-  await t.click(".chevron-cell:first-of-type > a");
+  await t.click(within(getAllByRole("row").nth(2)).getByRole("button"));
 
   await t
-    .click(getByText(/^Update/i))
+    .click(getByRole("button", { name: /^Update/i }))
     .expect(getByText(/Update \w+ info/).visible)
     .ok();
 
@@ -109,20 +113,16 @@ test("Should update one contact", async t => {
     .click(getByText(/Company/i))
     .typeText(getByLabelText(/Business/i), business, options);
 
-  await t.click(getByText(/^Edit/i));
+  await t.click(getByRole("button", { name: /^Edit/i }));
 
-  await t
-    .expect(
-      Selector('[data-label="Phone number"]').withText(phoneNumber).exists
-    )
-    .ok();
-  await t.expect(Selector("tr.detail").innerText).contains(website);
+  await t.expect(getByRole("cell", { name: phoneNumber }).exists).ok();
+  await t.expect(getByRole("article").innerText).contains(website);
 });
 
-test("Should delete one contact", async t => {
+test("Should delete one contact", async (t) => {
   await t
-    .click(".chevron-cell:first-of-type > a")
-    .click(getByText(/^Remove/))
-    .expect(Selector("tbody tr").count)
+    .click(within(getAllByRole("row").nth(3)).getByRole("button"))
+    .click(getByRole("button", { name: /^Remove/ }))
+    .expect(within(getAllByRole("rowgroup").nth(1)).getAllByRole("row").count)
     .eql(8);
 });

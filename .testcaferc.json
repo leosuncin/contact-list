@@ -10,6 +10,6 @@
   "appCommand": "npm run serve",
   "appInitDelay": 3000,
   "clientScripts": [
-    "./node_modules/@testing-library/dom/dist/@testing-library/dom.umd.js"
+    { "module": "@testing-library/dom/dist/@testing-library/dom.umd.js" }
   ]
 }
