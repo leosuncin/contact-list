@@ -269,7 +269,7 @@
 </template>
 
 <script>
-import { ToastProgrammatic as Toast } from 'buefy';
+import { ToastProgrammatic as Toast } from "buefy";
 
 const initialUser = {
   name: "",
