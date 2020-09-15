@@ -66,7 +66,7 @@
                   class="button is-danger"
                   @click="
                     contacts = contacts.filter(
-                      contact => contact.id !== props.row.id
+                      (contact) => contact.id !== props.row.id
                     )
                   "
                 >
@@ -104,6 +104,7 @@
                   <b-input
                     v-model="currentUser.name"
                     id="contact_name"
+                    name="contact[name]"
                     required
                   />
                 </b-field>
@@ -115,8 +116,9 @@
                   <b-input
                     v-model="currentUser.username"
                     id="contact_username"
+                    name="contact[username]"
                     required
-                    patter="\\w+"
+                    pattern="[a-zA-Z0-9._-]+"
                   />
                 </b-field>
                 <b-field label="e-mail" label-for="contact_email" horizontal>
@@ -124,6 +126,7 @@
                     type="email"
                     v-model="currentUser.email"
                     id="contact_email"
+                    name="contact[email]"
                     required
                   />
                 </b-field>
@@ -135,6 +138,7 @@
                   <b-input
                     v-model="currentUser.phone"
                     id="contact_phone"
+                    name="contact[phone]"
                     required
                     pattern="[0-9]+(-?[0-9]+)*"
                   />
@@ -144,6 +148,7 @@
                     type="url"
                     v-model="currentUser.website"
                     id="contact_website"
+                    name="contact[website]"
                     required
                   />
                 </b-field>
@@ -157,6 +162,7 @@
                   <b-input
                     v-model="currentUser.address.street"
                     id="contact_address_street"
+                    name="contact[address][street]"
                     required
                   />
                 </b-field>
@@ -168,6 +174,7 @@
                   <b-input
                     v-model="currentUser.address.suite"
                     id="contact_address_suite"
+                    name="contact[address][suite]"
                     required
                   />
                 </b-field>
@@ -179,18 +186,19 @@
                   <b-input
                     v-model="currentUser.address.city"
                     id="contact_address_city"
+                    name="contact[address][city]"
                     required
                   />
                 </b-field>
                 <b-field
                   horizontal
                   label="Zip Code"
-                  label-for="contact_address_zipCode"
+                  label-for="contact_address_zipcode"
                 >
                   <b-input
-                    type="number"
                     v-model="currentUser.address.zipcode"
-                    id="contact_address_zipCode"
+                    id="contact_address_zipcode"
+                    name="contact[address][zipcode]"
                     required
                   />
                 </b-field>
@@ -199,6 +207,7 @@
                     type="number"
                     v-model="currentUser.address.geo.lat"
                     id="contact_address_geo_lat"
+                    name="contact[address][geo][lat]"
                     aria-label="Latitude"
                     placeholder="Latitude"
                     step="0.0001"
@@ -228,6 +237,7 @@
                   <b-input
                     v-model="currentUser.company.name"
                     id="contact_company_name"
+                    name="contact[company][name]"
                     required="required"
                   />
                 </b-field>
@@ -239,6 +249,7 @@
                   <b-input
                     v-model="currentUser.company.catchPhrase"
                     id="contact_company_catchPhrase"
+                    name="contact[company][catchPhrase]"
                     required="required"
                   />
                 </b-field>
@@ -250,6 +261,7 @@
                   <b-input
                     v-model="currentUser.company.bs"
                     id="contact_company_bs"
+                    name="contact[company][bs]"
                     required="required"
                   />
                 </b-field>
@@ -282,16 +294,16 @@ const initialUser = {
     zipcode: "",
     geo: {
       lat: "",
-      lng: ""
-    }
+      lng: "",
+    },
   },
   phone: "",
   website: "",
   company: {
     name: "",
     catchPhrase: "",
-    bs: ""
-  }
+    bs: "",
+  },
 };
 
 export default {
@@ -301,30 +313,30 @@ export default {
         {
           field: "id",
           label: "ID",
-          numeric: true
+          numeric: true,
         },
         {
           field: "name",
-          label: "Full name"
+          label: "Full name",
         },
         {
           field: "username",
-          label: "Username"
+          label: "Username",
         },
         {
           field: "email",
-          label: "e-mail"
+          label: "e-mail",
         },
         {
           field: "phone",
-          label: "Phone number"
-        }
+          label: "Phone number",
+        },
       ],
       contacts: [],
       loading: true,
       showFormContactModal: false,
       currentUser: initialUser,
-      action: ""
+      action: "",
     };
   },
   methods: {
@@ -364,7 +376,7 @@ export default {
           ) + 1;
         this.contacts = [...this.contacts, { id, ...this.currentUser }];
       } else {
-        this.contacts = this.contacts.map(contact =>
+        this.contacts = this.contacts.map((contact) =>
           contact.id === this.currentUser.id ? this.currentUser : contact
         );
       }
@@ -373,11 +385,11 @@ export default {
           this.action === "Create"
             ? "Contact created"
             : `${this.currentUser.username}'s info was updated`,
-        type: "is-success"
+        type: "is-success",
       });
       this.$refs.parent.close();
       this.currentUser = initialUser;
-    }
+    },
   },
   beforeMount() {
     this.loadContacts();
@@ -385,7 +397,7 @@ export default {
   watch: {
     contacts(newVal) {
       localStorage.setItem("contacts", JSON.stringify(newVal));
-    }
-  }
+    },
+  },
 };
 </script>
