@@ -42,8 +42,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: bahmutov/npm-install@v1
-    - run: |
+    - name: Run TestCafe
+      run: |
         yarn add -O @ffmpeg-installer/ffmpeg
-    - uses: Meemaw/testcafe-action@master
-      with:
-        args: --app 'yarn serve' tests/testcafe
+        yarn test:testcafe
