@@ -1,10 +1,10 @@
 module.exports = {
   plugins: ["testcafe"],
   env: {
-    mocha: true
+    mocha: true,
   },
   extends: "plugin:testcafe/recommended",
   rules: {
-    strict: "off"
-  }
+    strict: "off",
+  },
 };

@@ -10,8 +10,8 @@ import Contacts from "./components/Contacts";
 export default {
   name: "app",
   components: {
-    Contacts
-  }
+    Contacts,
+  },
 };
 </script>
 

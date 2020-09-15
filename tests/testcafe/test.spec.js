@@ -23,21 +23,21 @@ const mockUsers = RequestMock()
 fixture("Contact List")
   .page(baseUrl)
   .requestHooks(mockUsers)
-  .beforeEach(async (t) => {
+  .beforeEach(async t => {
     await t.eval(() => localStorage.clear());
   });
 
-test("Should show a table with the contacts", async (t) => {
+test("Should show a table with the contacts", async t => {
   await t.expect(getAllByRole("row").count).gte(9);
 });
 
-test("Should show the details of one contact", async (t) => {
+test("Should show the details of one contact", async t => {
   await t.click(within(getAllByRole("row").nth(1)).getByRole("button"));
 
   await t.expect(getByRole("article").visible).ok();
 });
 
-test("Should create one contact", async (t) => {
+test("Should create one contact", async t => {
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
 
@@ -49,15 +49,15 @@ test("Should create one contact", async (t) => {
     .typeText(getByLabelText(/Full name/i), firstName + " " + lastName)
     .typeText(
       getByLabelText(/Username/i),
-      faker.internet.userName(firstName, lastName, "example.com")
+      faker.internet.userName(firstName, lastName, "example.com"),
     )
     .typeText(
       getByLabelText(/e-mail/i),
-      faker.internet.email(firstName, lastName)
+      faker.internet.email(firstName, lastName),
     )
     .typeText(
       getByLabelText(/Phone Number/i),
-      faker.phone.phoneNumber("####-####")
+      faker.phone.phoneNumber("####-####"),
     )
     .typeText(getByLabelText(/website/i), faker.internet.url());
 
@@ -81,12 +81,12 @@ test("Should create one contact", async (t) => {
   await t
     .expect(
       getByRole("row", { name: RegExp(`${firstName} ${lastName}`, "i") })
-        .visible
+        .visible,
     )
     .ok();
 });
 
-test("Should update one contact", async (t) => {
+test("Should update one contact", async t => {
   const phoneNumber = faker.phone.phoneNumber("####-####");
   const website = faker.internet.url();
   const zipCode = faker.address.zipCode("######");
@@ -119,7 +119,7 @@ test("Should update one contact", async (t) => {
   await t.expect(getByRole("article").innerText).contains(website);
 });
 
-test("Should delete one contact", async (t) => {
+test("Should delete one contact", async t => {
   await t
     .click(within(getAllByRole("row").nth(3)).getByRole("button"))
     .click(getByRole("button", { name: /^Remove/ }))

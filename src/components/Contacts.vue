@@ -66,7 +66,7 @@
                   class="button is-danger"
                   @click="
                     contacts = contacts.filter(
-                      (contact) => contact.id !== props.row.id
+                      contact => contact.id !== props.row.id,
                     )
                   "
                 >
@@ -351,7 +351,7 @@ export default {
       try {
         if (!Array.isArray(this.contacts) || this.contacts.length < 1) {
           const resp = await this.$http.get(
-            "https://jsonplaceholder.typicode.com/users"
+            "https://jsonplaceholder.typicode.com/users",
           );
 
           if (resp.status === 200) {
@@ -372,12 +372,12 @@ export default {
         const id =
           this.contacts.reduce(
             (max, current) => (max = current.id > max ? current.id : max),
-            Number.MIN_SAFE_INTEGER
+            Number.MIN_SAFE_INTEGER,
           ) + 1;
         this.contacts = [...this.contacts, { id, ...this.currentUser }];
       } else {
-        this.contacts = this.contacts.map((contact) =>
-          contact.id === this.currentUser.id ? this.currentUser : contact
+        this.contacts = this.contacts.map(contact =>
+          contact.id === this.currentUser.id ? this.currentUser : contact,
         );
       }
       Toast.open({

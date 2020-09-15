@@ -32,13 +32,13 @@ describe("Contact list", () => {
     cy.findByText(/Basic/i).click();
     cy.findByLabelText(/Full name/i).type(`${firstName} ${lastName}`);
     cy.findByLabelText(/Username/i).type(
-      faker.internet.userName(firstName, lastName)
+      faker.internet.userName(firstName, lastName),
     );
     cy.findByLabelText(/e-mail/i).type(
-      faker.internet.email(firstName, lastName)
+      faker.internet.email(firstName, lastName),
     );
     cy.findByLabelText(/Phone Number/i).type(
-      faker.phone.phoneNumber("####-####")
+      faker.phone.phoneNumber("####-####"),
     );
     cy.findByLabelText(/website/i).type(faker.internet.url());
 
