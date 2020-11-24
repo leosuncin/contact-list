@@ -7,11 +7,18 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'skip-ci')"
     steps:
+    - uses: haya14busa/action-cond@v1
+      id: reporter
+      with:
+        cond: ${{ github.event_name == 'pull_request' }}
+        if_true: "github-pr-review"
+        if_false: "github-check"
     - uses: actions/checkout@v2
     - uses: reviewdog/action-eslint@v1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         eslint_flags: --ext '.js' --ext '.vue' .
+        reporter: ${{ steps.reporter.outputs.value }}
 
   unit:
     runs-on: ubuntu-latest
@@ -27,8 +34,8 @@ jobs:
     runs-on: ubuntu-16.04
     if: "!contains(github.event.head_commit.message, 'skip-ci')"
     steps:
-    - uses: actions/checkout@v1
-    - uses: cypress-io/github-action@v1
+    - uses: actions/checkout@v2
+    - uses: cypress-io/github-action@v2
       timeout-minutes: 10
       env:
         CYPRESS_baseUrl: http://localhost:8080
