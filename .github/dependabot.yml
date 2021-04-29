@@ -1,0 +1,20 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: sunday
+    time: "11:00"
+  open-pull-requests-limit: 10
+  versioning-strategy: widen
+  ignore:
+  - dependency-name: buefy
+    versions:
+    - 0.9.6
+  - dependency-name: core-js
+    versions:
+    - 3.9.0
+  - dependency-name: sass-loader
+    versions:
+    - 11.0.0
