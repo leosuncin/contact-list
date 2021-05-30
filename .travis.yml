@@ -33,13 +33,33 @@ before_script:
   - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1400x900x24 -ac +extension GLX +render;
   - sleep 3
   - fluxbox >/dev/null 2>&1 &
-  - yarn build
 
-script:
-  - yarn lint
-  - yarn test:unit
-  - yarn test:e2e --headless
-  - yarn test:testcafe
+stages:
+  - lint
+  - test
+  - e2e
+  - name: deploy
+    if: branch = master
 
-after_script:
-  - yarn deploy
+jobs:
+  include:
+    - stage: lint
+      name: Lint source files
+      script:
+        - yarn lint
+    - stage: test
+      name: Run unit tests
+      script:
+        - yarn test:unit
+    - stage: e2e
+      name: Run Cypress tests
+      script:
+        - yarn test:e2e --headless
+    - stage: e2e
+      name: Run TestCafe tests
+      script:
+        - yarn test:testcafe
+    - stage: deploy
+      script:
+        - yarn build
+        - yarn deploy
