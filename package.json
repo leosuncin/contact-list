@@ -19,7 +19,7 @@
     "vue-resource": "^1.5.1"
   },
   "devDependencies": {
-    "@testing-library/cypress": "^7.0.0",
+    "@testing-library/cypress": "^8.0.0",
     "@testing-library/testcafe": "^4.2.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-e2e-cypress": "~4.5.0",
