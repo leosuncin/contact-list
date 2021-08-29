@@ -3176,9 +3176,9 @@ bser@2.1.1:
     node-int64 "^0.4.0"
 
 buefy@^0.9.3:
-  version "0.9.8"
-  resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.9.8.tgz#51fb52bf3bcf4b8db7668f0ca17f1a5e8cf7f499"
-  integrity sha512-VBGAD6WtmgpPdiRnBXaTleS3ifpNu9rbInAr54YL8KJw1RhCb8JtGYYYVRjllnDQmN0jQjC5lYoPR9KpfTe+Cw==
+  version "0.9.10"
+  resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.9.10.tgz#17f64ee1ba43a145d1d3c56f45cba95e4e2975fa"
+  integrity sha512-xXEoy/NTgBNiIfBTCdHi2Vu5SJJdB046py6ekUvYuUgYwRvulySZksdecVNNWdfEVU8iD4esZaRbTLwCegFcVQ==
   dependencies:
     bulma "0.9.3"
 
